@@ -209,7 +209,9 @@ export function ActiveServerSelector({
                 onClick={(e) => {
                   // Check if click originated from reconnect button
                   // Using Element to cover SVG elements too
-                  if ((e.target as Element).closest("[data-reconnect-button]")) {
+                  if (
+                    (e.target as Element).closest("[data-reconnect-button]")
+                  ) {
                     return;
                   }
                   handleServerClick(name);
@@ -248,23 +250,23 @@ export function ActiveServerSelector({
                   {serverConfig.config.command ? "STDIO" : "HTTP"}
                 </div>
                 {onReconnect && (
-                    <div
-                      role="button"
-                      tabIndex={0}
-                      data-reconnect-button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        e.nativeEvent.stopImmediatePropagation();
-                        // Also prevent default to avoid double actions if standard button behavior applies
-                        e.preventDefault();
-                        onReconnect(name);
-                      }}
-                      className="ml-auto p-1 rounded-md hover:bg-muted-foreground/20 text-muted-foreground hover:text-foreground transition-colors"
-                      title="Reconnect"
-                    >
-                      <RefreshCw className="w-3 h-3" />
-                    </div>
-                  )}
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    data-reconnect-button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.nativeEvent.stopImmediatePropagation();
+                      // Also prevent default to avoid double actions if standard button behavior applies
+                      e.preventDefault();
+                      onReconnect(name);
+                    }}
+                    className="ml-auto p-1 rounded-md hover:bg-muted-foreground/20 text-muted-foreground hover:text-foreground transition-colors"
+                    title="Reconnect"
+                  >
+                    <RefreshCw className="w-3 h-3" />
+                  </div>
+                )}
               </button>
             );
           })}

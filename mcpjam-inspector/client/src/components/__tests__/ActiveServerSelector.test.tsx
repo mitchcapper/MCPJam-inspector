@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import {
   ActiveServerSelector,
   type ActiveServerSelectorProps,
@@ -588,16 +594,19 @@ describe("ActiveServerSelector", () => {
       expect(onReconnect).toHaveBeenCalledWith("server-1");
     });
 
-
     it("does not change selection when reconnecting a non-active server", () => {
       const onReconnect = vi.fn();
       const onServerChange = vi.fn();
       const serverConfigs = {
-        "active-server": createServer({ name: "active-server", connectionStatus: "connected" }),
-        "inactive-server": createServer({ name: "inactive-server", connectionStatus: "disconnected" }),
+        "active-server": createServer({
+          name: "active-server",
+          connectionStatus: "connected",
+        }),
+        "inactive-server": createServer({
+          name: "inactive-server",
+          connectionStatus: "disconnected",
+        }),
       };
-
-
 
       render(
         <ActiveServerSelector
@@ -620,11 +629,15 @@ describe("ActiveServerSelector", () => {
       const onReconnect = vi.fn();
       const onServerChange = vi.fn();
       const serverConfigs = {
-        "active-server": createServer({ name: "active-server", connectionStatus: "disconnected" }),
-        "other-server": createServer({ name: "other-server", connectionStatus: "connected" }),
+        "active-server": createServer({
+          name: "active-server",
+          connectionStatus: "disconnected",
+        }),
+        "other-server": createServer({
+          name: "other-server",
+          connectionStatus: "connected",
+        }),
       };
-
-
 
       render(
         <ActiveServerSelector
